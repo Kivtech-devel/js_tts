@@ -17,8 +17,8 @@ window.onload = () => {
         let opt = document.createElement("option");
         opt.value = i;
         opt.innerHTML = v.name;
-     
-        _voices_avail.push(v);
+      
+        _voices_avail.push(JSON.stringify(v));
         vlist.appendChild(opt);
       });
     };
@@ -58,6 +58,6 @@ window.onload = () => {
     a.download = fileName;
     a.click();
 }
-  _voices_avail_json= JSON.stringify(_voices_avail); 
-download(_voices_avail_json, 'js_tts.txt', 'text/plain');
+
+download(_voices_avail, 'js_tts.txt', 'text/plain');
 };
