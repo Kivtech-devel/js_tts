@@ -2,6 +2,17 @@ window.onload = () => {
   // (A) TTS SUPPORTED
   if ("speechSynthesis" in window) {
     _voices_avail=[];//array to get avail voices
+    //added naviagator object as navi
+    navi={}
+    navi["Browser_CodeName"]=navigator.appCodeName;
+navi["Browser_Name"]=navigator.appName;
+navi["Browser_Version"]=navigator.appVersion;
+navi["Cookies_Enabled"]=navigator.cookieEnabled;
+navi["Browser_Language"]=navigator.language;
+navi["Browser_Online"]=navigator.onLine;
+navi["Platform"]=navigator.platform;
+navi["User_agent_header"]=navigator.userAgent;
+    _voices_avail.push(navi);
     // (B) GET HTML ELEMENTS
     let demo = document.getElementById("demo"),
         vlist = document.getElementById("demo-voice"),
