@@ -18,7 +18,7 @@ window.onload = () => {
         opt.value = i;
         opt.innerHTML = v.name;
      
-        _voices_avail.append(v);
+        _voices_avail.push(v);
         vlist.appendChild(opt);
       });
     };
