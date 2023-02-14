@@ -17,8 +17,23 @@ window.onload = () => {
         let opt = document.createElement("option");
         opt.value = i;
         opt.innerHTML = v.name;
-      
-        _voices_avail.push((v));
+//         default: false
+// ​​​
+// lang: "ur"
+// ​​​
+// localService: false
+// ​​​
+// name: "Urdu+RicishayMax2"
+// ​​​
+// voiceURI: "urn:moz-tts:speechd:Urdu+RicishayMax2?ur"
+        //replacting as dictionary 
+        _voices={};
+        _voices['name']=v.name;
+        _voices['lang']=v.lang;
+        _voices['default']=v.default;
+        _voices['voiceURI']=v.voiceURI;
+                
+        _voices_avail.push(_voices);
         vlist.appendChild(opt);
       });
     };
@@ -58,6 +73,6 @@ window.onload = () => {
     a.download = fileName;
     a.click();
 }
-// disabled download as empty object is passed
-// download(_voices_avail, 'js_tts.txt', 'text/plain');
+// re-enabled download modified as dictionary 
+ download(_voices_avail, 'js_tts.txt', 'text/plain');
 };
