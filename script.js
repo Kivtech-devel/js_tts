@@ -1,6 +1,7 @@
 window.onload = () => {
   // (A) TTS SUPPORTED
   if ("speechSynthesis" in window) {
+    _voices_avail=[];//array to get avail voices
     // (B) GET HTML ELEMENTS
     let demo = document.getElementById("demo"),
         vlist = document.getElementById("demo-voice"),
@@ -16,7 +17,8 @@ window.onload = () => {
         let opt = document.createElement("option");
         opt.value = i;
         opt.innerHTML = v.name;
-        console.log(v);
+     
+        _voices_avail.append(v);
         vlist.appendChild(opt);
       });
     };
@@ -46,4 +48,5 @@ window.onload = () => {
   else {
     alert("Text-to-speech is not supported on your browser!"); 
   }
+  console.log(_voices_avail);
 };
