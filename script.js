@@ -16,6 +16,7 @@ window.onload = () => {
         let opt = document.createElement("option");
         opt.value = i;
         opt.innerHTML = v.name;
+        console.log(v);
         vlist.appendChild(opt);
       });
     };
