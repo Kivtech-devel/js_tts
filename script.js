@@ -66,7 +66,7 @@ window.onload = () => {
   else {
     alert("Text-to-speech is not supported on your browser!"); 
   }
-  console.log(_voices_avail);
+//   console.log(_voices_avail);
   // (B.8) download modified as dictionary and making it json stringify
   function download(content, fileName, contentType) {
     var a = document.createElement("a");
