@@ -18,7 +18,7 @@ window.onload = () => {
         opt.value = i;
         opt.innerHTML = v.name;
       
-        _voices_avail.push(JSON.stringify(v));
+        _voices_avail.push((v));
         vlist.appendChild(opt);
       });
     };
@@ -58,6 +58,6 @@ window.onload = () => {
     a.download = fileName;
     a.click();
 }
-
-download(_voices_avail, 'js_tts.txt', 'text/plain');
+// disabled download as empty object is passed
+// download(_voices_avail, 'js_tts.txt', 'text/plain');
 };
