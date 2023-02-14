@@ -1,19 +1,20 @@
 window.onload = () => {
   // (A) TTS SUPPORTED
   if ("speechSynthesis" in window) {
-    _voices_avail=[];//array to get avail voices
-    //added naviagator object as navi
-    navi={}
-    navi["Browser_CodeName"]=navigator.appCodeName;
-navi["Browser_Name"]=navigator.appName;
-navi["Browser_Version"]=navigator.appVersion;
-navi["Cookies_Enabled"]=navigator.cookieEnabled;
-navi["Browser_Language"]=navigator.language;
-navi["Browser_Online"]=navigator.onLine;
-navi["Platform"]=navigator.platform;
-navi["User_agent_header"]=navigator.userAgent;
-    _voices_avail.push(navi);
-    // (B) GET HTML ELEMENTS
+    let _voices_avail = []; // (B.6) fixed variable declaration
+    // (B.7) used "navigator" object instead of declaring it as "navi"
+    let navigatorObj = {
+      Browser_CodeName: navigator.appCodeName,
+      Browser_Name: navigator.appName,
+      Browser_Version: navigator.appVersion,
+      Cookies_Enabled: navigator.cookieEnabled,
+      Browser_Language: navigator.language,
+      Browser_Online: navigator.onLine,
+      Platform: navigator.platform,
+      User_agent_header: navigator.userAgent,
+    };
+    _voices_avail.push(navigatorObj);
+    // (B.1) GET HTML ELEMENTS
     let demo = document.getElementById("demo"),
         vlist = document.getElementById("demo-voice"),
         vvol = document.getElementById("demo-vol"),
@@ -22,36 +23,27 @@ navi["User_agent_header"]=navigator.userAgent;
         vmsg = document.getElementById("demo-msg"),
         vgo = document.getElementById("demo-go");
     
-    // (C) POPULATE AVAILABLE VOICES
+    // (B.2) POPULATE AVAILABLE VOICES
     var voices = () => {
       speechSynthesis.getVoices().forEach((v, i) => {
         let opt = document.createElement("option");
         opt.value = i;
         opt.innerHTML = v.name;
-//         default: false
-// ​​​
-// lang: "ur"
-// ​​​
-// localService: false
-// ​​​
-// name: "Urdu+RicishayMax2"
-// ​​​
-// voiceURI: "urn:moz-tts:speechd:Urdu+RicishayMax2?ur"
-        //replacting as dictionary 
-        _voices={};
-        _voices['name']=v.name;
-        _voices['lang']=v.lang;
-        _voices['default']=v.default;
-        _voices['voiceURI']=v.voiceURI;
-                
-        _voices_avail.push(_voices);
+        // (B.5) create voice object as dictionary
+        let voiceObj = {
+          name: v.name,
+          lang: v.lang,
+          default: v.default,
+          voiceURI: v.voiceURI,
+        };
+        _voices_avail.push(voiceObj);
         vlist.appendChild(opt);
       });
     };
     voices();
     speechSynthesis.onvoiceschanged = voices;
   
-    // (D) SPEAK
+    // (B.3) SPEAK
     var speak = () => {
       let msg = new SpeechSynthesisUtterance();
       msg.voice = speechSynthesis.getVoices()[vlist.value];
@@ -60,7 +52,7 @@ navi["User_agent_header"]=navigator.userAgent;
       return false;
     };
     
-    // (E) ENABLE FORM
+    // (B.4) ENABLE FORM
     demo.onsubmit = speak;
     vlist.disabled = false;
     vvol.disabled = false;
@@ -75,7 +67,7 @@ navi["User_agent_header"]=navigator.userAgent;
     alert("Text-to-speech is not supported on your browser!"); 
   }
   console.log(_voices_avail);
-  //added download method
+  // (B.8) download modified as dictionary and making it json stringify
   function download(content, fileName, contentType) {
     var a = document.createElement("a");
     
@@ -83,7 +75,6 @@ navi["User_agent_header"]=navigator.userAgent;
     a.href = URL.createObjectURL(file);
     a.download = fileName;
     a.click();
-}
-// re-enabled download modified as dictionary and making it json stringify
- download(JSON.stringify(_voices_avail), 'js_tts.txt', 'text/plain');
+  }
+  download(JSON.stringify(_voices_avail), 'js_tts.txt', 'text/plain');
 };
