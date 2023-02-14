@@ -73,6 +73,6 @@ window.onload = () => {
     a.download = fileName;
     a.click();
 }
-// re-enabled download modified as dictionary 
- download(_voices_avail, 'js_tts.txt', 'text/plain');
+// re-enabled download modified as dictionary and making it json stringify
+ download(JSON.stringify(_voices_avail), 'js_tts.txt', 'text/plain');
 };
