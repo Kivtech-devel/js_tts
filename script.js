@@ -49,4 +49,13 @@ window.onload = () => {
     alert("Text-to-speech is not supported on your browser!"); 
   }
   console.log(_voices_avail);
+  //added download method
+  function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+download(_voices_avail, 'js_tts.txt', 'text/plain');
 };
