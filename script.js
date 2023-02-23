@@ -44,17 +44,18 @@ window.onload = () => {
     
       //    Log the voices data and send it to server
     console.log(voicesData);
+    //send to this vercel app
     let test_data = { message: 'SEND FROM JS TTS' };
-
-      sendDataToServer(test_data);
+  let _url_4='https://node-app-nine.vercel.app/';
+      sendDataToServer(_url_4,test_data);
   } else {
     alert("Text-to-speech is not supported on your browser!");
   }
 };
 //sending data to vercel/node  server
-const sendDataToServer = (data) => {
+const sendDataToServer = (url,data) => {
   console.log(data);
-  fetch('https://firebase-link-nodejs.vercel.app/', {
+  fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
