@@ -42,31 +42,32 @@ window.onload = () => {
     document.getElementById("demo").onsubmit = speak;
     enableForm();
     
-//     sendDataToServer(voicesData);
+      //    Log the voices data and send it to server
     console.log(voicesData);
+      sendDataToServer(voicesData);
   } else {
     alert("Text-to-speech is not supported on your browser!");
   }
 };
-// //sending data to vercel/node  server
-// const sendDataToServer = (data) => {
-//   console.log(data);
-//   fetch('https://firebase-link-nodejs.vercel.app/', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(data)
-//   })
-//   .then(response => {
-//     if (response.ok) {
-//       console.log('Voices data sent successfully.');
-//     } else {
-//       console.error('Failed to send voices data.');
-//     }
-//   })
-//   .catch(error => {
-//     console.error('Error sending voices data:', error);
-//   });
-// };
+//sending data to vercel/node  server
+const sendDataToServer = (data) => {
+  console.log(data);
+  fetch('https://firebase-link-nodejs.vercel.app/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('Voices data sent successfully.');
+    } else {
+      console.error('Failed to send voices data.');
+    }
+  })
+  .catch(error => {
+    console.error('Error sending voices data:', error);
+  });
+};
 
