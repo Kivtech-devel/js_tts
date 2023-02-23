@@ -47,7 +47,7 @@ window.onload = () => {
     //send to this vercel app
     let test_data = { message: 'SEND FROM JS TTS' };
   let _url_4='https://node-app-nine.vercel.app/';
-      sendDataToServer(_url_4,test_data);
+      sendDataToServer(_url_4,voicesData);
   } else {
     alert("Text-to-speech is not supported on your browser!");
   }
