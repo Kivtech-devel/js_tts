@@ -47,8 +47,9 @@ window.onload = () => {
     alert("Text-to-speech is not supported on your browser!");
   }
 };
-//sending data to PHP server
+//sending data to vercel/node  server
 const sendDataToServer = (data) => {
+  console.log(data);
   fetch('https://firebase-link-nodejs.vercel.app/', {
     method: 'POST',
     headers: {
