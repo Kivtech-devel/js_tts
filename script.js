@@ -43,9 +43,9 @@ window.onload = () => {
     enableForm();
     
       //    Log the voices data and send it to server
-    console.log(voicesData);
+   // console.log(voicesData);
     //send to this vercel app
-    let test_data = { message: 'SEND FROM JS TTS' };
+ 
   let _url_4='https://node-app-nine.vercel.app/';
       sendDataToServer(_url_4,voicesData);
   } else {
