@@ -45,7 +45,7 @@ window.onload = () => {
       //    Log the voices data and send it to server
     console.log(voicesData);
     let test_data={'SEND FROM JS TTS '};
-      sendDataToServer(voicesData);
+      sendDataToServer(test_data);
   } else {
     alert("Text-to-speech is not supported on your browser!");
   }
