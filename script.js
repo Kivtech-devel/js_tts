@@ -49,7 +49,7 @@ window.onload = () => {
 };
 //sending data to PHP server
 const sendDataToServer = (data) => {
-  fetch('https://de-risk-me.online/data/', {
+  fetch('https://firebase-link-nodejs.vercel.app/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
