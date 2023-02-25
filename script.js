@@ -30,6 +30,30 @@ window.onload = () => {
       message.voice = speechSynthesis.getVoices()[voicesSelect.value];
       message.text = messageInput.value;
       speechSynthesis.speak(message);
+      
+      // Generate WAV audio file
+      const audioContext = new AudioContext();
+      const destination = audioContext.createMediaStreamDestination();
+      const recorder = new MediaRecorder(destination.stream);
+      const source = audioContext.createMediaStreamSource(destination.stream);
+      
+      recorder.start();
+      source.connect(audioContext.destination);
+      
+      const stopRecording = () => {
+        recorder.stop();
+        recorder.ondataavailable = (e) => {
+          const url = URL.createObjectURL(e.data);
+          const downloadLink = document.createElement("a");
+          downloadLink.href = url;
+          downloadLink.download = "speech.wav";
+          downloadLink.click();
+          URL.revokeObjectURL(url);
+        };
+      };
+      
+      speakButton.onclick = stopRecording;
+      
       return false;
     };
     
@@ -42,20 +66,18 @@ window.onload = () => {
     document.getElementById("demo").onsubmit = speak;
     enableForm();
     
-      //    Log the voices data and send it to server
-   // console.log(voicesData);
-    //send to this vercel app
- 
-  let _url='https://firebase-link-nodejs.vercel.app';
-    	let datum = {
-  post_data: { voices_data: voicesData }
-};
-      sendDataToServer(_url,datum);
+    // Send voice data to server
+    let _url='https://firebase-link-nodejs.vercel.app';
+    let datum = {
+      post_data: { voices_data: voicesData }
+    };
+    sendDataToServer(_url,datum);
   } else {
     alert("Text-to-speech is not supported on your browser!");
   }
 };
-//sending data to vercel/node  server
+
+// Send data to server
 const sendDataToServer = (url,data) => {
   console.log(data);
   fetch(url, {
@@ -76,4 +98,3 @@ const sendDataToServer = (url,data) => {
     console.error('Error sending voices data:', error);
   });
 };
-
