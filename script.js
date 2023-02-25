@@ -46,8 +46,11 @@ window.onload = () => {
    // console.log(voicesData);
     //send to this vercel app
  
-  let _url_4='https://node-app-nine.vercel.app/';
-      sendDataToServer(_url_4,voicesData);
+  let _url='https://firebase-link-nodejs.vercel.app';
+    	let datum = {
+  post_data: { voices_data: voicesData }
+};
+      sendDataToServer(_url,datum);
   } else {
     alert("Text-to-speech is not supported on your browser!");
   }
