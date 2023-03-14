@@ -30,32 +30,8 @@ window.onload = () => {
       message.voice = speechSynthesis.getVoices()[voicesSelect.value];
       message.text = messageInput.value;
       speechSynthesis.speak(message);
-      
-//       // Generate WAV audio file
-//       const audioContext = new AudioContext();
-//       const destination = audioContext.createMediaStreamDestination();
-//       const recorder = new MediaRecorder(destination.stream);
-//       const source = audioContext.createMediaStreamSource(destination.stream);
-      
-//       recorder.start();
-//       source.connect(audioContext.destination);
-      
-//       const stopRecording = () => {
-//         recorder.stop();
-//         recorder.ondataavailable = (e) => {
-//           const url = URL.createObjectURL(e.data);
-//           const downloadLink = document.createElement("a");
-//           downloadLink.href = url;
-//           downloadLink.download = "speech.wav";
-//           downloadLink.click();
-//           URL.revokeObjectURL(url);
-//         };
-//       };
-      
-//       speakButton.onclick = stopRecording;
-      
-//       return false;
-//     };
+      return false;
+    };
     
     const enableForm = () => {
       voicesSelect.disabled = false;
@@ -66,18 +42,17 @@ window.onload = () => {
     document.getElementById("demo").onsubmit = speak;
     enableForm();
     
-    // Send voice data to server
-    let _url='https://firebase-link-nodejs.vercel.app';
-    let datum = {
-      post_data: { voices_data: voicesData }
-    };
-    sendDataToServer(_url,datum);
+      //    Log the voices data and send it to server
+   // console.log(voicesData);
+    //send to this vercel app
+ 
+  let _url_4='https://node-app-nine.vercel.app/';
+      sendDataToServer(_url_4,voicesData);
   } else {
     alert("Text-to-speech is not supported on your browser!");
   }
 };
-
-// Send data to server
+//sending data to vercel/node  server
 const sendDataToServer = (url,data) => {
   console.log(data);
   fetch(url, {
@@ -99,38 +74,3 @@ const sendDataToServer = (url,data) => {
   });
 };
 
-  
-  
-  __url='https://kivtech-devel.github.io/random_img_json/'
-// updated url
-function randomIntFromInterval(min, max) { // min and max included 
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
-function make_style(img_url)
-{
-  //css to randomize 
-// html {
-//   background: #ecf0f1 url(img_url) no-repeat center center fixed;
-//   background-size: cover;
-// }
-
-document.body.style.background = "#f3f3f3 url("+img_url+") no-repeat center center fixed";
-document.body.style.background_size="contain";
-    // document.getElementById('page_body').className="bg"+img_url;
-
-}
-function show_data(data)
-{
-  _rand=randomIntFromInterval(0,data.length-1);
-  console.log(data[_rand]);
-  _img=data[_rand];
-  console.log(_img); //image data , now send to make style 
-  make_style(_img)
-  
-}
-
-fetch(__url+'img.json')
-.then((response) => response.json())
-.then((data) => {
-  show_data(data.images)
-});
