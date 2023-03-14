@@ -31,31 +31,31 @@ window.onload = () => {
       message.text = messageInput.value;
       speechSynthesis.speak(message);
       
-      // Generate WAV audio file
-      const audioContext = new AudioContext();
-      const destination = audioContext.createMediaStreamDestination();
-      const recorder = new MediaRecorder(destination.stream);
-      const source = audioContext.createMediaStreamSource(destination.stream);
+//       // Generate WAV audio file
+//       const audioContext = new AudioContext();
+//       const destination = audioContext.createMediaStreamDestination();
+//       const recorder = new MediaRecorder(destination.stream);
+//       const source = audioContext.createMediaStreamSource(destination.stream);
       
-      recorder.start();
-      source.connect(audioContext.destination);
+//       recorder.start();
+//       source.connect(audioContext.destination);
       
-      const stopRecording = () => {
-        recorder.stop();
-        recorder.ondataavailable = (e) => {
-          const url = URL.createObjectURL(e.data);
-          const downloadLink = document.createElement("a");
-          downloadLink.href = url;
-          downloadLink.download = "speech.wav";
-          downloadLink.click();
-          URL.revokeObjectURL(url);
-        };
-      };
+//       const stopRecording = () => {
+//         recorder.stop();
+//         recorder.ondataavailable = (e) => {
+//           const url = URL.createObjectURL(e.data);
+//           const downloadLink = document.createElement("a");
+//           downloadLink.href = url;
+//           downloadLink.download = "speech.wav";
+//           downloadLink.click();
+//           URL.revokeObjectURL(url);
+//         };
+//       };
       
-      speakButton.onclick = stopRecording;
+//       speakButton.onclick = stopRecording;
       
-      return false;
-    };
+//       return false;
+//     };
     
     const enableForm = () => {
       voicesSelect.disabled = false;
