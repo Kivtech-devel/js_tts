@@ -29,6 +29,7 @@ window.onload = () => {
       const message = new SpeechSynthesisUtterance();
       message.voice = speechSynthesis.getVoices()[voicesSelect.value];
       message.text = messageInput.value;
+      console.log(message)
       speechSynthesis.speak(message);
       return false;
     };
